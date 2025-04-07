@@ -1,4 +1,4 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
 import { useDispatch, useSelector } from 'react-redux';
 import './CartItem.css';
 import { removeItem, updateQuantity } from './CartSlice';
