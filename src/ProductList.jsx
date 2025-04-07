@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
 import './ProductList.css';
@@ -9,6 +9,14 @@ function ProductList({ onHomeClick }) {
   const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
   const [addedToCart, setAddedToCart] = useState({});
   const dispatch = useDispatch();
+
+  // Get cart items from Redux store
+  const cartItems = useSelector((state) => state.cart.items);
+
+  // Calculate total quantity of items in cart
+  const getTotalCartQuantity = () => {
+    return cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
+  };
 
   const plantsArray = [
     {
@@ -348,6 +356,11 @@ function ProductList({ onHomeClick }) {
                     id='mainIconPathAttribute'
                   ></path>
                 </svg>
+                {getTotalCartQuantity() > 0 && (
+                  <span className='cart-quantity'>
+                    {getTotalCartQuantity()}
+                  </span>
+                )}
               </h1>
             </a>
           </div>

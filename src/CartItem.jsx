@@ -45,6 +45,12 @@ const CartItem = ({ onContinueShopping }) => {
     return (cost * item.quantity).toFixed(2);
   };
 
+  const handleCheckout = () => {
+    alert(
+      'Thank you for your purchase! Checkout functionality will be added in a future update.',
+    );
+  };
+
   return (
     <div className='cart-container'>
       <h2 style={{ color: 'black' }}>
@@ -99,7 +105,9 @@ const CartItem = ({ onContinueShopping }) => {
           Continue Shopping
         </button>
         <br />
-        <button className='get-started-button1'>Checkout</button>
+        <button className='get-started-button1' onClick={handleCheckout}>
+          Checkout
+        </button>
       </div>
     </div>
   );
