@@ -20,8 +20,23 @@ export const CartSlice = createSlice({
         state.items.push({ ...newItem, quantity: 1 });
       }
     },
-    removeItem: (state, action) => {},
-    updateQuantity: (state, action) => {},
+    removeItem: (state, action) => {
+      // Remove item from cart based on item name
+      const itemNameToRemove = action.payload;
+      state.items = state.items.filter(
+        (item) => item.name !== itemNameToRemove,
+      );
+    },
+    updateQuantity: (state, action) => {
+      // Extract name and new quantity from payload
+      const { name, amount } = action.payload;
+
+      // Find the item and update its quantity
+      const itemToUpdate = state.items.find((item) => item.name === name);
+      if (itemToUpdate) {
+        itemToUpdate.quantity = amount;
+      }
+    },
   },
 });
 
